@@ -1,0 +1,13 @@
+@dominio=http://localhost:3000
+
+@uid="1234"
+
+@token="abcd1234"
+
+POST {{dominio}}/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "jorge.garcia6@gmail.com",
+  "password": "yourpassword"
+}

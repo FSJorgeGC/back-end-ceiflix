@@ -2,12 +2,14 @@
 
 @uid="1234"
 
-@token="abcd1234"
+@token="A7NEs8DsLjCknq6yk+RspnGKXH5q2SvyzDoRBJSwop3KDwI4JzOZWzaQZT4="
 
 POST {{dominio}}/api/v1/auth/login
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
+  "name": "Jorge",
   "email": "jorge.garcia6@gmail.com",
   "password": "yourpassword"
 }

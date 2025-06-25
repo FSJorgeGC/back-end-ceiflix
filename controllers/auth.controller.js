@@ -15,9 +15,9 @@ export const loginUser = async (req, res, next) => {
     try{
         //Verificamos si el usuario existe
         const {name, email, password} = req.body;
+                console.log("Datos del usuario:", email);
 
         const existingUser = await usuarioModel.findOne({email});
-
         if(!existingUser){
             return res.status(400).json({
                 msg: "El correo ingresado no es válido"
@@ -25,12 +25,13 @@ export const loginUser = async (req, res, next) => {
         }
 
 
-        // Verificar si la clave está bien
-        if(password != existingUser.password){
+        const isPasswordValid = await bcrypt.compare(password, existingUser.password);
+        if (!isPasswordValid) {
             return res.status(401).json({
                 msg: "Tu clave es incorrecta"
-            })
+            });
         }
+
 
         // Crear un token JWT
         const token = jwt.sign({
